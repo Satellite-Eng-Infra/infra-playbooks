@@ -1,0 +1,12 @@
+---
+- name: 'Copy Red Hat IT Root CA cert'
+  copy:
+    src: "files/2015-RH-IT-Root-CA.pem"
+    dest: "/etc/pki/ca-trust/source/anchors/2015-RH-IT-Root-CA.pem"
+  notify: update-ca-trust
+
+- name: 'Copy Red Hat Engineering CA cert'
+  copy:
+    src: "files/Eng-CA.crt"
+    dest: "/etc/pki/ca-trust/source/anchors/Eng-CA.crt"
+  notify: update-ca-trust
