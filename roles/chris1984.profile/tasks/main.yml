@@ -1,0 +1,16 @@
+---
+- name: Copy file with owner and permissions
+  copy:
+    src: "files/bashrc.config"
+    dest: /root/.bash_rc
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy bashprofile with owner and permissions
+  copy:
+    src: "files/bashprofile.config"
+    dest: /root/.bash_profile
+    owner: root
+    group: root
+    mode: '0644'
