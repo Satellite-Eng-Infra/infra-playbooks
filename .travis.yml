@@ -12,6 +12,7 @@ script:
   # Test the syntax of the playbook.
   - ansible-playbook -i inventory motd.yml --syntax-check
   - ansible-playbook -i inventory nfs.yml --syntax-check
+  - ansible-playbook -i inventory profile.yml --syntax-check
   - ansible-playbook -i inventory selinux.yml --syntax-check
 
 # Email on failed builds and send update to Ansible Galaxy
