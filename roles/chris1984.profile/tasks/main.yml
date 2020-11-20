@@ -2,7 +2,7 @@
 - name: Copy file with owner and permissions
   copy:
     src: "files/bashrc.config"
-    dest: /root/.bash_rc
+    dest: /root/.bashrc
     owner: root
     group: root
     mode: '0644'
