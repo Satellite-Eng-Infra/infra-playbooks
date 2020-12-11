@@ -17,3 +17,8 @@
   selinux:
     policy: "{{ selinux_policy }}"
     state: "{{ selinux_state }}"
+
+- name: Install setroubleshoot package on host
+  yum:
+    name: setroubleshoot
+    state: latest
