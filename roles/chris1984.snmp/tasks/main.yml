@@ -1,0 +1,16 @@
+---
+- name: Ensure SNMP is installed on host
+  yum:
+    name: net-snmp
+    state: present
+
+- name: Place our config file over default one
+  copy:
+    src: "files/snmpd.conf"
+    dest: "/etc/snmp/snmpd.conf"
+
+- name: Start SNMP and enable it
+  service:
+    name: snmpd
+    enabled: yes
+    state: started
