@@ -1,0 +1,9 @@
+---
+- name: Ping hosts
+  hosts: all
+  become: true
+  remote_user: root
+  become_method: enable
+
+  roles:
+    - chris1984.ping
