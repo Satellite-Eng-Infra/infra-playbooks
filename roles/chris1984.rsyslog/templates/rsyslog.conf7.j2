@@ -91,9 +91,9 @@ local7.*                                                /var/log/boot.log
 # remote host is: name/ip:port, e.g. 192.168.0.1:514, port optional
 {% if rsyslog__remote_forwarding %}
   {% if 'tcp' in rsyslog__remote_forward_protocol %}
-*.* @{{  rsyslog__remote_forward_host }}:{{ rsyslog__remote_forward_port }}
-  {% else %}
 *.* @@{{  rsyslog__remote_forward_host }}:{{ rsyslog__remote_forward_port }}
+  {% else %}
+*.* @{{  rsyslog__remote_forward_host }}:{{ rsyslog__remote_forward_port }}
   {% endif %}
 {% endif %}
 # ### end of the forwarding rule ###
