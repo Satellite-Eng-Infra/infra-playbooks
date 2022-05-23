@@ -1,9 +1,0 @@
----
-- name: Setup NFS exports on hosts
-  hosts: all
-  become: true
-  remote_user: root
-  become_method: enable
-
-  roles:
-    - chris1984.nfs
