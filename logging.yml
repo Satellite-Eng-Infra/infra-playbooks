@@ -1,9 +1,0 @@
----
-- name: Setup LogDNA on remote machines
-  hosts: all
-  become: true
-  remote_user: root
-  become_method: enable
-
-  roles:
-    - chris1984.logging
