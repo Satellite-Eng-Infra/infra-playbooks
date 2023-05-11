@@ -1,19 +1,17 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
-{% if resolv_search is defined and resolv_search | length > 0 %}
-search {{ resolv_search|join(' ') }}
-{% endif %}
-{% if resolv_domain is defined and resolv_domain != "" %}
-domain {{ resolv_domain }}
-{% endif %}
-{% for ns in resolv_nameservers %}
-nameserver {{ ns }}
+{% for item in resolv_conf_nameserver -%}
+  nameserver {{ item }}
 {% endfor %}
-{% if resolv_sortlist is defined and resolv_sortlist | length > 0 %}
-{% for sl in resolv_sortlist %}
-sortlist {{ sl }}
-{% endfor %}
+{% if resolv_conf_domain | length > 0 -%}
+  domain {{ resolv_conf_domain }}
 {% endif %}
-{% if resolv_options is defined and resolv_options | length > 0 %}
-options {{ resolv_options|join(' ') }}
+{% if resolv_conf_search | length > 0 -%}
+  search {{ resolv_conf_search | join(" ") }}
+{% endif %}
+{% if resolv_conf_sortlist | length > 0 -%}
+  sortlist {{ resolv_conf_sortlist | join(" ") }}
+{% endif %}
+{% if resolv_conf_options | length > 0 -%}
+  options {{ resolv_conf_options | join(" ") }}
 {% endif %}
