@@ -1,0 +1,17 @@
+---
+- name: Install {{ rsyslog__service }} packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ rsyslog__packages | default([]) | flatten(levels=1) }}"
+  notify: Restart rsyslog service
+
+- name: Create the application folder set
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ rsyslog__user }}"
+    group: "{{ rsyslog__group }}"
+    mode: "{{ rsyslog__dir_mode }}"
+  loop: "{{ rsyslog__directories | default([]) | flatten(levels=1) }}"
+...

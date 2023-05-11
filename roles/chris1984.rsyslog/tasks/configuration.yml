@@ -1,0 +1,27 @@
+---
+- name: Create the main configuration file
+  template:
+    src: "{{ rsyslog__service }}.conf.j2"
+    dest: "{{ rsyslog__conf_file }}"
+    owner: "{{ rsyslog__user }}"
+    group: "{{ rsyslog__group }}"
+    mode: "{{ rsyslog__file_mode }}"
+  when: rsyslog__conf_file is defined
+  notify: Restart rsyslog service
+
+- name: Remove unwanted configuration files
+  file:
+    path: "{{ rsyslog__dynamic_conf_dir }}/{{ item.name }}"
+    state: absent
+  when: item.absent is defined
+  loop: "{{ rsyslog__dynamic_config | default([]) | flatten(levels=1) }}"
+
+- name: Create dynamic configuration files
+  template:
+    src: rsyslog.d.j2
+    dest: "{{ rsyslog__dynamic_conf_dir }}/{{ item.name }}"
+    mode: "{{ rsyslog__file_mode }}"
+  loop: "{{ rsyslog__dynamic_config | default([]) | flatten(levels=1) }}"
+  when: item.absent is not defined
+  notify: Restart rsyslog service
+...

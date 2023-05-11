@@ -1,0 +1,13 @@
+---
+- name: Uninstall packages
+  package:
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ rsyslog__packages | default([]) | flatten(levels=1) }}"
+
+- name: Delete the application folder set
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop: "{{ rsyslog__directories | default([]) | flatten(levels=1) }}"
+...
