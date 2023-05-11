@@ -84,9 +84,6 @@ rsyslog__default_config:
           mail.info                                 -/var/log/mail.info
           mail.warn                                 -/var/log/mail.warn
           mail.err                                  -/var/log/mail.err
-      - comment: "Everybody gets emergency messages."
-        options: |
-          *.emerg                                   *
       - comment: "Logging to the console."
         options: |
           daemon.*;mail.*;\
