@@ -1,0 +1,28 @@
+---
+# tasks file for chris1984.snap
+
+- name: Grab snap file from OHSNAP
+  ansible.builtin.get_url:
+    url: "http://ohsnap.sat.engineering.redhat.com/api/releases/{{ sat_version }}/snaps/{{ snap_version }}/el8/satellite/repo_file"
+    dest: /etc/yum.repos.d/satellite.repo
+    force: true
+
+- name: Stop the services
+  ansible.builtin.command: foreman-maintain service stop
+
+- name: Unlock Foreman Protector
+  ansible.builtin.copy:
+  src: "files/foreman-protector.conf"
+  dest: /etc/yum/pluginconf.d/foreman-protector.conf
+  owner: root
+  group: root
+  mode: u=rw,g=r,o=r
+
+- name: Update the packages
+  ansible.builtin.yum:
+    name: '*'
+    state: latest
+
+- name: Run the installer
+  ansible.builtin.command: foreman-installer -l info
+  register: installer
