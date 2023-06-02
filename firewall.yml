@@ -1,0 +1,13 @@
+---
+- name: Disable firewalld on all hosts
+  hosts: all
+  become: true
+  remote_user: root
+  become_method: enable
+
+tasks:
+- name: Turn off firewalld and disable it
+  ansible.builtin.service:
+    name: firewalld
+    state: stopped
+    enabled: false
