@@ -1,0 +1,9 @@
+---
+- name: Update snap on satellite preview
+  hosts: all
+  become: true
+  remote_user: root
+  become_method: enable
+
+  roles:
+    - chris1984.snap
