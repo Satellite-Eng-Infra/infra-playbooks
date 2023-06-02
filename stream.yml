@@ -1,0 +1,9 @@
+---
+- name: Update stream on stream satellite
+  hosts: all
+  become: true
+  remote_user: root
+  become_method: enable
+
+  roles:
+    - chris1984.stream
