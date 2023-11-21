@@ -1,0 +1,9 @@
+---
+- name: Extend reservation on internal Beaker infra
+  hosts: all
+  gather_facts: no
+
+  tasks:
+  - name: Extend reservation 99 hours
+    ansible.builtin.command: extendtesttime.sh 99
+  
