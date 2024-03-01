@@ -4,11 +4,11 @@ resolv_conf_file: /etc/resolv.conf
 
 # Default nameservers
 resolv_conf_nameserver:
-  - 8.8.8.8
-  - 8.8.4.4
+  - 10.8.104.1
+  - 10.10.160.1
 
 # Default domain
-resolv_conf_domain: ''
+resolv_conf_domain: 'satellite.lab.eng.rdu2.redhat.com'
 
 # Default search list
 resolv_conf_search: []
