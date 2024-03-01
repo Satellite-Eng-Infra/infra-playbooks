@@ -1,5 +1,9 @@
 ---
-- name: Set MOTD on remote machine
+- name: Create MOTD file
   template:
     src: templates/etc/motd.j2
     dest: /etc/motd
+    group: root
+    owner: root
+    mode: 0444
+
