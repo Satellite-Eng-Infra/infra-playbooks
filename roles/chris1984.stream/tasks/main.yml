@@ -10,13 +10,19 @@
 - name: Stop the services
   ansible.builtin.command: foreman-maintain service stop
 
-- name: Unlock Foreman Protector
+- name: Unlock Foreman Protector Pre Install
   ansible.builtin.copy:
   src: "files/foreman-protector.conf"
   dest: /etc/yum/pluginconf.d/foreman-protector.conf
   owner: root
   group: root
   mode: u=rw,g=r,o=r
+
+- name: Clean yum
+  command: 'yum clean all'
+
+- name: Create yum cache
+  command: 'yum makecache'
 
 - name: Update the packages
   ansible.builtin.yum:
@@ -26,3 +32,11 @@
 - name: Run the installer
   ansible.builtin.command: foreman-installer -l info
   register: installer
+
+- name: Unlock Foreman Protector Post Install
+  ansible.builtin.copy:
+  src: "files/foreman-protector.conf"
+  dest: /etc/yum/pluginconf.d/foreman-protector.conf
+  owner: root
+  group: root
+  mode: u=rw,g=r,o=r
