@@ -1,0 +1,10 @@
+---
+# tasks file for chris1984.foremanprotect
+
+- name: Unlock Foreman Protector
+  ansible.builtin.copy:
+  src: "files/foreman-protector.conf"
+  dest: /etc/yum/pluginconf.d/foreman-protector.conf
+  owner: root
+  group: root
+  mode: u=rw,g=r,o=r
