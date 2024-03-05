@@ -5,15 +5,16 @@ motd_sysadmins_email: chrobert@redhat.com
 motd_sysadmins_slack: Toledo
 
 motd_info:
-  - " Hostname:    ": "{{ ansible_fqdn }}"
-  - " Distro:  ": "{{ ansible_distribution }} {{ ansible_distribution_version }} {{ ansible_distribution_release }}"
-  - " Processor:    ": "{{ ansible_processor_vcpus }}"
+  - " Hostname: ": "{{ ansible_fqdn }}"
+  - " Distro: ": "{{ ansible_distribution }} {{ ansible_distribution_version }} {{ ansible_distribution_release }}"
+  - " Processor: ": "{{ ansible_processor_vcpus }}"
   - " IP Address ": "{{ ansible_default_ipv4.address }}"
   - " MAC Address ": "{{ ansible_default_ipv4.macaddress }}"
-  - " Memory:     ": "{{ (ansible_memtotal_mb / 1000) | round(1) }}GB"
+  - " Memory: ": "{{ (ansible_memtotal_mb / 1000) | round(1) }}GB"
   - " SELinux: ": "{{ ansible_selinux.status|upper }}"
   - " System UUID ": "{{ ansible_product_uuid }}"
   - " Kernel Version ": "{{ ansible_kernel.split('.el')[0] | lower }}"
+  - " Virtualization ": "{{ ansible_virtualization_type}}"
   - " System Type: ": "{{ 'Virtual' if ansible_virtualization_role  == 'guest' else 'Physical' }}"
 
 motd_content: |
@@ -21,9 +22,7 @@ motd_content: |
   --------------------------------------------------------------------------
                       This system is managed by Ansible
   --------------------------------------------------------------------------
-
-  This is {{ ansible_fqdn }} running {{ ansible_distribution }}.
-
+  
   NOTE: System and application configuration for this host is managed by
   Ansible Tower. To ensure that any changes you make here are not lost,
   please connect with your system administrators.

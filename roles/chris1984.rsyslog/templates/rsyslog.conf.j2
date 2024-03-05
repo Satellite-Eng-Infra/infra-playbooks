@@ -1,4 +1,4 @@
-{{ ansible_managed | comment }}
+# {{ ansible_managed }}
 # rsyslog configuration file
 
 # For more information see /usr/share/doc/rsyslog-*/rsyslog_conf.html
@@ -72,5 +72,5 @@ $IncludeConfig {{ rsyslog__dynamic_conf_dir }}/*.conf
 #$ActionQueueType LinkedList   # run asynchronously
 #$ActionResumeRetryCount -1    # infinite retries if host is down
 # remote host is: name/ip:port, e.g. 192.168.0.1:514, port optional
-*.* @@logs.satellite.lab.eng.rdu2.redhat.com:5514
+*.* @logs.satellite.lab.eng.rdu2.redhat.com:5514
 # ### end of the forwarding rule ###
