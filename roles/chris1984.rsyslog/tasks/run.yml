@@ -14,4 +14,15 @@
   notify:
     - Reload systemd configuration
     - Restart rsyslog service
+
+- name: Place down journald.conf file
+  copy:
+    src: "files/journald.conf"
+    dest: /etc/systemd/journald.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Reload systemd configuration
+    - Restart rsyslog service
 ...
